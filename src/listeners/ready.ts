@@ -1,5 +1,5 @@
 import { Client } from "discord.js";
-import { Commands } from "src/commands/centralizeCommands";
+import { centralizeCommands } from "../commands/centralizeCommands";
 
 export default (client: Client): void => {
     client.on("ready", async () => {
@@ -7,7 +7,7 @@ export default (client: Client): void => {
             return;
         }
 
-        await client.application.commands.set(Commands);
+        await client.application.commands.set(centralizeCommands);
 
         console.log(`${client.user.username} is online`);
     });

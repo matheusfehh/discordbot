@@ -1,4 +1,4 @@
 import { Command } from "../command";
 import { Hello } from "./hello";
 
-export const Commands: Command[] = [Hello];
+export const centralizeCommands: Command[] = [Hello];
