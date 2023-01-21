@@ -64,23 +64,30 @@ export const btcEuro = async () => {
   }
 }
 
+
+
 dollarReal().then(res => {
+  console.log('--[dollarReal]--------')
   console.log(res);
   console.log('----------------------')
 });
 euroReal().then(res => {
+  console.log('--[euroReal]--------')
   console.log(res);
   console.log('----------------------')
 });
 btcReal().then(res => {
+  console.log('--[btcReal]--------')
   console.log(res);
   console.log('----------------------')
 });
 btcDollar().then(res => {
+  console.log('--[btcDollar]--------')
   console.log(res);
   console.log('----------------------')
 });
 btcEuro().then(res => {
+  console.log('--[btcEuro]--------')
   console.log(res);
   console.log('----------------------')
 });
