@@ -1,12 +1,10 @@
 import { Client, ClientOptions } from "discord.js";
+import { JorgeEnvHandler } from "./envLoader";
 
-console.log("Bot is starting...");
-
-const token = process.env.TOKEN;
-
+const env = JorgeEnvHandler.envHandler();
+console.log('Jorge Acordando...')
 const client = new Client({
     intents: []
 });
-client.login(token);
 
-console.log(client); 
+client.login(String(env.TOKEN));
