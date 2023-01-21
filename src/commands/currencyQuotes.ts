@@ -1,6 +1,6 @@
 import { CommandInteraction, Client, ApplicationCommandType } from "discord.js";
 import { Command } from "src/command";
-import { btcDollarAPI, btcRealAPI, btcEuroAPI, dollarRealAPI, euroRealAPI } from "src/api/api";
+import { btcDollarAPI, btcRealAPI, btcEuroAPI, dollarRealAPI, euroRealAPI, currencyAPI } from "src/api/api";
 
 export const dollarReal: Command = {
     name: "dolar-real",

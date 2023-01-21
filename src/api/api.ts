@@ -1,6 +1,6 @@
-import { load } from "ts-dotenv";
 import axios from 'axios';
-import { IconData } from "@discordjs/builders";
+import { load } from "ts-dotenv";
+import { CurrencyEnum } from "./enumCurrency";
 
 ////https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL
 
@@ -13,6 +13,24 @@ const instance = axios.create({
   timeout: 1000,
   headers: { 'X-Custom-Header': 'foobar' }
 });
+
+const currencyMap: Map<string,string> = new Map
+currencyMap.set("dolar-real", CurrencyEnum.DOLAR_REAL);
+currencyMap.set("euro-real", CurrencyEnum.EURO_REAL);
+currencyMap.set("btc-real", CurrencyEnum.BTC_REAL);
+currencyMap.set("btc-dolar", CurrencyEnum.BTC_DOLAR);
+currencyMap.set("btc-euro", CurrencyEnum.BTC_EURO);
+
+export const currencyAPI = async (commandName: string) => {
+  
+  try {
+    const { data } = await instance.get(`/last/${currencyMap.get(commandName)}`);
+    const currency = Object.entries(data)[0][1] as ICurrency;
+    return formatBotMessage(currency);
+  } catch (error) {
+    console.log('error[currencyAPI] :>> ', error);
+  }
+}
 
 export const dollarRealAPI = async () => {
   try {
@@ -65,32 +83,36 @@ export const btcEuroAPI = async () => {
 }
 
 
+currencyAPI('dolar-real').then(res=>{
+  console.log('res :>> ', res);
+})
+// dollarRealAPI().then(res => {
+//   console.log('--[dollarReal]--------')
+//   console.log(res);
+//   console.log('----------------------')
+// });
+// euroRealAPI().then(res => {
+//   console.log('--[euroReal]--------')
+//   console.log(res);
+//   console.log('----------------------')
+// });
+// btcRealAPI().then(res => {
+//   console.log('--[btcReal]--------')
+//   console.log(res);
+//   console.log('----------------------')
+// });
+// btcDollarAPI().then(res => {
+//   console.log('--[btcDollar]--------')
+//   console.log(res);
+//   console.log('----------------------')
+// });
+// btcEuroAPI().then(res => {
+//   console.log('--[btcEuro]--------')
+//   console.log(res);
+//   console.log('----------------------')
+// });
 
-dollarRealAPI().then(res => {
-  console.log('--[dollarReal]--------')
-  console.log(res);
-  console.log('----------------------')
-});
-euroRealAPI().then(res => {
-  console.log('--[euroReal]--------')
-  console.log(res);
-  console.log('----------------------')
-});
-btcRealAPI().then(res => {
-  console.log('--[btcReal]--------')
-  console.log(res);
-  console.log('----------------------')
-});
-btcDollarAPI().then(res => {
-  console.log('--[btcDollar]--------')
-  console.log(res);
-  console.log('----------------------')
-});
-btcEuroAPI().then(res => {
-  console.log('--[btcEuro]--------')
-  console.log(res);
-  console.log('----------------------')
-});
+
 
 interface ICurrency {
   code: string;
