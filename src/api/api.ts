@@ -107,7 +107,7 @@ interface ICurrency {
 }
 
 function formatBotMessage(currency: ICurrency): string {
-  return `Compra:${currency.bid}\nVenda:${currency.ask}\nAlta:${currency.high}\nBaixa: ${currency.low} `
+  return `Compra:${currency.bid}\nVenda:${currency.ask}\nAlta do dia:${currency.high}\nBaixa do dia: ${currency.low} `
 }
 
 //Comprar: <valor>, Venda: <Valor>, Alta do dia: <Valor>, Baixa do dia:<Valor>
