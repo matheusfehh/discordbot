@@ -1,67 +1,106 @@
 import { load } from "ts-dotenv";
 import axios from 'axios';
+import { IconData } from "@discordjs/builders";
 
 ////https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL
 
 const env = load({
-    API: String
+  API: String
 });
 
 const instance = axios.create({
-    baseURL: env.API,
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
-  });
+  baseURL: env.API,
+  timeout: 1000,
+  headers: { 'X-Custom-Header': 'foobar' }
+});
 
-export const dollarReal = async() => {
-  instance.get('/last/USD-BRL')
-  .then(data =>{
-    console.log('data :>> ', data.data);
-  })
-  .catch(error =>{
-    console.log('API error :>> ', error);
-  });
+export const dollarReal = async () => {
+  try {
+    const { data } = await instance.get('/last/USD-BRL');
+    const { USDBRL } = data;
+    return formatBotMessage(USDBRL);
+  } catch (error) {
+    console.log('error[dollarReal] :>> ', error);
+  }
 }
 
-export const euroReal = ()=>{
-  instance.get('/last/EUR-BRL')
-  .then(data =>{
-    console.log('data :>> ', data.data);
-  })
-  .catch(error =>{
-    console.log('API error :>> ', error);
-  });
+export const euroReal = async () => {
+  try {
+    const { data } = await instance.get('/last/EUR-BRL');
+    const { EURBRL } = data;
+    return formatBotMessage(EURBRL);
+  } catch (error) {
+    console.log('error[euroReal]:>> ', error);
+  }
 }
 
-export const btcReal = ()=>{
-  instance.get('/last/BTC-BRL')
-  .then(data =>{
-    console.log('data :>> ', data.data);
-  })
-  .catch(error =>{
-    console.log('API error :>> ', error);
-  });
+export const btcReal = async () => {
+  try {
+    const { data } = await instance.get('/last/BTC-BRL');
+    const { BTCBRL } = data;
+    return formatBotMessage(BTCBRL);
+  } catch (error) {
+    console.log('error[btcReal] :>> ', error);
+  }
 }
 
-export const btcDollar = ()=>{
-  instance.get('/last/BTC-USD')
-  .then(data =>{
-    console.log('data :>> ', data.data);
-  })
-  .catch(error =>{
-    console.log('API error :>> ', error);
-  });
+export const btcDollar = async () => {
+  try {
+    const { data } = await instance.get('/last/BTC-USD');
+    const { BTCUSD } = data;
+    return formatBotMessage(BTCUSD);
+  } catch (error) {
+    console.log('error[btcDollar] :>> ', error);
+  }
 }
 
-export const btcEuro = ()=>{
-  instance.get('/last/BTC-EUR')
-  .then(data =>{
-    console.log('data :>> ', data.data);
-  })
-  .catch(error =>{
-    console.log('API error :>> ', error);
-  });
+export const btcEuro = async () => {
+  try {
+    const { data } = await instance.get('/last/BTC-EUR');
+    const { BTCEUR } = data;
+    return formatBotMessage(BTCEUR);
+  } catch (error) {
+    console.log('error[btcEuro] :>> ', error);
+  }
 }
 
+dollarReal().then(res => {
+  console.log(res);
+  console.log('----------------------')
+});
+euroReal().then(res => {
+  console.log(res);
+  console.log('----------------------')
+});
+btcReal().then(res => {
+  console.log(res);
+  console.log('----------------------')
+});
+btcDollar().then(res => {
+  console.log(res);
+  console.log('----------------------')
+});
+btcEuro().then(res => {
+  console.log(res);
+  console.log('----------------------')
+});
 
+interface ICurrency {
+  code: string;
+  codein: string;
+  name: string;
+  high: string;
+  low: string;
+  varBid: string;
+  pctChange: string;
+  bid: string;
+  ask: string;
+  timestamp: string;
+  create_date: Date;
+}
 
+function formatBotMessage(currency: ICurrency): string {
+  return `Compra:${currency.bid}\nVenda:${currency.ask}\nAlta:${currency.high}\nBaixa: ${currency.low} `
+}
+
+//Comprar: <valor>, Venda: <Valor>, Alta do dia: <Valor>, Baixa do dia:<Valor>
