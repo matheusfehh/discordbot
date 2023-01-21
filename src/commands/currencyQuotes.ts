@@ -1,12 +1,13 @@
 import { CommandInteraction, Client, ApplicationCommandType } from "discord.js";
 import { Command } from "src/command";
+import { btcDollarAPI, btcRealAPI, btcEuroAPI, dollarRealAPI, euroRealAPI } from "src/api/api";
 
 export const dollarReal: Command = {
     name: "dolar-real",
     description: "Returns a greeting",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Hello there!";
+        const content = await dollarRealAPI();;
 
         await interaction.followUp({
             ephemeral: true,
@@ -20,7 +21,7 @@ export const euroReal: Command = {
     description: "Returns a greeting",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Hello there!";
+        const content = await euroRealAPI();
 
         await interaction.followUp({
             ephemeral: true,
@@ -34,7 +35,7 @@ export const bitCoinReal: Command = {
     description: "Returns currency relation bitcoin and real br",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Hello there!";
+        const content = await btcRealAPI();;
 
         await interaction.followUp({
             ephemeral: true,
@@ -48,7 +49,7 @@ export const bitCoinDollar: Command = {
     description: "Returns currency relation bitcoin and dollar",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Hello there!";
+        const content = await btcDollarAPI();
 
         await interaction.followUp({
             ephemeral: true,
@@ -62,7 +63,7 @@ export const bitCoinEuro: Command = {
     description: "Returns currency relation bitcoin and euro",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = "Hello there!";
+        const content = await btcEuroAPI();
 
         await interaction.followUp({
             ephemeral: true,

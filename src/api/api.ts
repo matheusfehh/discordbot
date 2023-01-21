@@ -14,7 +14,7 @@ const instance = axios.create({
   headers: { 'X-Custom-Header': 'foobar' }
 });
 
-export const dollarReal = async () => {
+export const dollarRealAPI = async () => {
   try {
     const { data } = await instance.get('/last/USD-BRL');
     const { USDBRL } = data;
@@ -24,7 +24,7 @@ export const dollarReal = async () => {
   }
 }
 
-export const euroReal = async () => {
+export const euroRealAPI = async () => {
   try {
     const { data } = await instance.get('/last/EUR-BRL');
     const { EURBRL } = data;
@@ -34,7 +34,7 @@ export const euroReal = async () => {
   }
 }
 
-export const btcReal = async () => {
+export const btcRealAPI = async () => {
   try {
     const { data } = await instance.get('/last/BTC-BRL');
     const { BTCBRL } = data;
@@ -44,7 +44,7 @@ export const btcReal = async () => {
   }
 }
 
-export const btcDollar = async () => {
+export const btcDollarAPI = async () => {
   try {
     const { data } = await instance.get('/last/BTC-USD');
     const { BTCUSD } = data;
@@ -54,7 +54,7 @@ export const btcDollar = async () => {
   }
 }
 
-export const btcEuro = async () => {
+export const btcEuroAPI = async () => {
   try {
     const { data } = await instance.get('/last/BTC-EUR');
     const { BTCEUR } = data;
@@ -66,27 +66,27 @@ export const btcEuro = async () => {
 
 
 
-dollarReal().then(res => {
+dollarRealAPI().then(res => {
   console.log('--[dollarReal]--------')
   console.log(res);
   console.log('----------------------')
 });
-euroReal().then(res => {
+euroRealAPI().then(res => {
   console.log('--[euroReal]--------')
   console.log(res);
   console.log('----------------------')
 });
-btcReal().then(res => {
+btcRealAPI().then(res => {
   console.log('--[btcReal]--------')
   console.log(res);
   console.log('----------------------')
 });
-btcDollar().then(res => {
+btcDollarAPI().then(res => {
   console.log('--[btcDollar]--------')
   console.log(res);
   console.log('----------------------')
 });
-btcEuro().then(res => {
+btcEuroAPI().then(res => {
   console.log('--[btcEuro]--------')
   console.log(res);
   console.log('----------------------')
