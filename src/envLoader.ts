@@ -13,7 +13,6 @@ export class JorgeEnvHandler {
     }
 }
 
-
 export interface IEnvSchema {
     PUBLICKEY: String,
     APPID: String,
