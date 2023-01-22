@@ -32,6 +32,4 @@ describe("Teste API Currency", ()=>{
         const res = await currencyAPI(name);
         assert.deepEqual(res?.lookingFor, 'BTC');
     });
-
-
-})
+});

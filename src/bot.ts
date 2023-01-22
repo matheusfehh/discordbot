@@ -1,11 +1,13 @@
+import { load } from 'ts-dotenv';
 import { Client, ClientOptions } from "discord.js";
-import { JorgeEnvHandler } from "./envLoader";
 import ready from "./listeners/ready";
 import interactionCreate from "./listeners/interactionCreate";
 
 console.log("Bot is starting...");
 
-const env = JorgeEnvHandler.envHandler();
+const env = load({
+    TOKEN: String
+})
 
 const client = new Client({
     intents: []
