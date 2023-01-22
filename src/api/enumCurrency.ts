@@ -6,3 +6,22 @@ export enum CurrencyEnum {
     BTC_EURO = 'BTC-EUR'
 }
 
+export interface ICurrency {
+    code: string;
+    codein: string;
+    name: string;
+    high: string;
+    low: string;
+    varBid: string;
+    pctChange: string;
+    bid: string;
+    ask: string;
+    timestamp: string;
+    create_date: Date;
+  }
+  
+  export interface ICurrencyResponse{
+    lookingFor: string,
+    text: string
+  }
+

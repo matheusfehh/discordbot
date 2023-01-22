@@ -1,14 +1,14 @@
 import { CommandInteraction, Client, ApplicationCommandType } from "discord.js";
 import { Command } from "src/command";
-import { btcDollarAPI, btcRealAPI, btcEuroAPI, dollarRealAPI, euroRealAPI, currencyAPI } from "src/api/api";
+import { currencyAPI } from "src/api/api";
 
 export const dollarReal: Command = {
     name: "dolar-real",
     description: "Returns a greeting",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = await dollarRealAPI();;
-
+        const res = await currencyAPI("dolar-real");
+        const content = res?.text ? res.text : "Acho que dei problema";
         await interaction.followUp({
             ephemeral: true,
             content
@@ -21,7 +21,8 @@ export const euroReal: Command = {
     description: "Returns a greeting",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = await euroRealAPI();
+        const res = await currencyAPI("euro-real");
+        const content = res?.text ? res.text : "Acho que dei problema";
 
         await interaction.followUp({
             ephemeral: true,
@@ -35,7 +36,8 @@ export const bitCoinReal: Command = {
     description: "Returns currency relation bitcoin and real br",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = await btcRealAPI();;
+        const res = await currencyAPI("btc-real");
+        const content = res?.text ? res.text : "Acho que dei problema";
 
         await interaction.followUp({
             ephemeral: true,
@@ -49,7 +51,8 @@ export const bitCoinDollar: Command = {
     description: "Returns currency relation bitcoin and dollar",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = await btcDollarAPI();
+        const res = await currencyAPI("btc-dolar");
+        const content = res?.text ? res.text : "Acho que dei problema";
 
         await interaction.followUp({
             ephemeral: true,
@@ -63,7 +66,8 @@ export const bitCoinEuro: Command = {
     description: "Returns currency relation bitcoin and euro",
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
-        const content = await btcEuroAPI();
+        const res = await currencyAPI("btc-euro");
+        const content = res?.text ? res.text : "Acho que dei problema";
 
         await interaction.followUp({
             ephemeral: true,

@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/bot.ts",
-    "api": "ts-node src/api/api.ts",
+    "api": "ts-node src/api/api.spec.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
