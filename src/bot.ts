@@ -16,4 +16,9 @@ const client = new Client({
 ready(client);
 interactionCreate(client);
 
-client.login(String(env.TOKEN)).then(res => console.log('Login com sucesso! :)')).catch(error => (console.log('Falha no Login. :/')));
+client.login(String(env.TOKEN+ '1'))
+    .then(res => console.log('Login com sucesso! :)'))
+    .catch(error => {
+        console.log('error :>> ', error.code);
+        console.log('Falha no Login. :/')
+    });

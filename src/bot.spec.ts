@@ -1,6 +1,16 @@
 import assert from 'assert';
 import { describe, it } from 'node:test';
-import { currencyAPI } from "./api";
+import { currencyAPI } from "./api/api";
+import { Client } from "discord.js";
+import { load } from 'ts-dotenv';
+
+const client = new Client({
+    intents: []
+});
+
+const env = load({
+    TOKEN: String
+});
 
 describe("Teste API Currency", ()=>{
     it("Deve pesquisar por dolar-real via API", async()=>{
@@ -33,3 +43,17 @@ describe("Teste API Currency", ()=>{
         assert.deepEqual(res?.lookingFor, 'BTC');
     });
 });
+
+describe("Teste ligar o bot", () => {
+    it("Deve conseguir logar com o token do ambiente", async () => {
+        const res = await client.login(String(env.TOKEN));
+        assert.deepEqual(res, env.TOKEN);
+    });
+
+    it('Deve retornar o nome Jorge, the Translator', () => {
+        client.on("ready", async () => {
+            assert.deepEqual(client.user?.username, "Jorge, the Translator")
+        });
+    });
+
+})
