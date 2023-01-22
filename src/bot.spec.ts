@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { describe, it } from 'node:test';
+import { after, describe, it } from 'node:test';
 import { currencyAPI } from "./api/api";
 import { Client } from "discord.js";
 import { load } from 'ts-dotenv';
@@ -51,9 +51,11 @@ describe("Teste ligar o bot", () => {
     });
 
     it('Deve retornar o nome Jorge, the Translator', () => {
-        client.on("ready", async () => {
-            assert.deepEqual(client.user?.username, "Jorge, the Translator")
+        client.on("ready", () => {
+           assert.deepEqual(client.user?.username, "Jorge, the Translator")
         });
     });
-
+    after(()=>{
+        process.exit();
+    });
 })
