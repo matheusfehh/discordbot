@@ -21,7 +21,7 @@ export interface ICurrency {
   }
   
   export interface ICurrencyResponse{
-    lookingFor: string,
+    code: string,
     text: string
   }
 

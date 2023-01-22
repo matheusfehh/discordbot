@@ -26,7 +26,7 @@ export const currencyAPI = async (commandName: string) => {
     const { data } = await instance.get(`/last/${currencyMap.get(commandName)}`);
     const currency = Object.entries(data)[0][1] as ICurrency;
     const response: ICurrencyResponse = {
-      lookingFor: currency.code,
+      code: currency.code,
       text: formatBotMessage(currency)
     }
     return response;
